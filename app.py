@@ -22,16 +22,17 @@ mood = st.selectbox("Select Mood:", ["Happy", "Sad", "Energetic", "Calm", "Roman
 # Generate button
 if st.button("Generate Song"):
     if prompt:
-        # 1. Generate song lyrics using GPT-3 (old API method)
+        # 1. Generate song lyrics using GPT-3.5 Turbo (updated API)
         try:
             lyrics_prompt = f"Write {genre} song lyrics that are {mood} based on: {prompt}"
-            response = openai.Completion.create(
-                engine="text-davinci-003",  # Old API call
-                prompt=lyrics_prompt,
-                max_tokens=150,
-                temperature=0.7,
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",  # Updated GPT model
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant that writes song lyrics."},
+                    {"role": "user", "content": lyrics_prompt}
+                ]
             )
-            lyrics = response.choices[0].text.strip()
+            lyrics = response['choices'][0]['message']['content'].strip()
             st.subheader(f"Generated {genre} Song Lyrics (Mood: {mood}):")
             st.text(lyrics)
 
