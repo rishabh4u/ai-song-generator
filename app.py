@@ -1,14 +1,13 @@
 import openai
 import streamlit as st
-import requests
 
 # Set your OpenAI API key here
 openai.api_key = st.secrets["openai_api_key"]  # We'll store this securely in Streamlit secrets
 
 # Function to simulate melody generation
 def generate_melody(lyrics, genre, mood):
-    # This is a placeholder function for melody generation. You can replace this with an actual model.
-    return "https://your-audio-file-url.com/sample.mp3"  # Replace with actual generated audio URL
+    # Return a placeholder URL for melody audio (replace with actual melody generation later)
+    return "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"  # Static audio URL
 
 # Streamlit UI setup
 st.title("AI Song Generator")
@@ -36,7 +35,7 @@ if st.button("Generate Song"):
             st.subheader(f"Generated {genre} Song Lyrics (Mood: {mood}):")
             st.text(lyrics)
 
-            # 2. Simulate melody generation
+            # 2. Simulate melody generation (using a static URL)
             st.subheader("Generated Melody:")
             melody_url = generate_melody(lyrics, genre, mood)
             st.audio(melody_url, format="audio/mp3")
