@@ -2,6 +2,7 @@ import openai
 import streamlit as st
 from gtts import gTTS
 from pydub import AudioSegment
+import requests  # Add this line to import requests
 import os
 
 # Set your OpenAI API key here
