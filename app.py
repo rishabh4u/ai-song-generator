@@ -2,8 +2,15 @@ import openai
 import streamlit as st
 from gtts import gTTS
 from pydub import AudioSegment
-import requests  # Add this line to import requests
+import requests
 import os
+
+# Ensure pydub uses the installed FFmpeg and ffprobe
+ffmpeg_path = "/usr/bin/ffmpeg"  # Default path where ffmpeg is installed in Streamlit Cloud
+ffprobe_path = "/usr/bin/ffprobe"  # Default path where ffprobe is installed in Streamlit Cloud
+
+AudioSegment.converter = ffmpeg_path
+AudioSegment.ffprobe = ffprobe_path
 
 # Set your OpenAI API key here
 openai.api_key = st.secrets["openai_api_key"]  # Securely stored in Streamlit secrets
